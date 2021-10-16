@@ -1,0 +1,91 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skolr - Sessions</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'pomodoro/sessions.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <ol id="nav-bar">
+            <li class="page">
+                <div id="account-dropdown">
+                    <button id="drop-btn" class="page-link">account</button>
+                    <div id="dropdown-links">
+                        {% if user.is_authenticated %}
+                            <a class="page-link" href="{% url 'profile' %}">profile</a>
+                            <a class="page-link" href="{% url 'logout' %}">sign out</a>
+
+                        {% else %}
+                            <a class="page-link" href="{% url 'login' %}">sign in</a>
+                            <a class="page-link" href="{% url 'register' %}">register</a>
+                        {% endif %}
+                    </div>
+
+                </div>
+            
+            <li class="page"><a class="page-link" href="{% url 'pomodoro-sessions' %}">sessions</a></li>
+            <li class="page"><a class="page-link" href="{% url 'pomodoro-timer' %}">timer</a></li>
+            
+        </ol>
+    
+
+    </header>
+    <div>
+        <h1 id="greeting">hey {{user.username}},</h1>
+        
+    </div>
+    <div>
+        <p id="greetings2">here are your work sessions.</p>
+    </div>
+    
+    <div id="session-container">
+        <table id="sessions-table">
+            <tr id="sessions-header">
+                <th class="table-cell">subject</th>
+                <th class="table-cell">date</th>
+                <th class="table-cell">duration</th>
+            </tr>
+
+            {% for session in Sessions %}
+                <tr id="sessions-row">
+                    <td class="table-cell"> {{session.subject}} </td>
+                    <td class="table-cell"> {{session.timeSpent}} </td>
+                    <td class="table-cell"> {{session.date |date:"m/d/y"}} </td>
+                </tr>
+
+            {% endfor %}
+      
+        </table>
+    </div>
+    
+    <div id="page-numbers">
+        {% if is_paginated %}
+        <ul class="pagination">
+        {% if page_obj.has_previous %}
+        <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+        {% else %}
+        <li class="disabled"><span>&laquo;</span></li>
+        {% endif %}
+        {% for i in paginator.page_range %}
+        {% if page_obj.number == i %}
+            <li class="active"><span>{{ i }}<span class="sr-only"></span></span></li>
+        {% else %}
+            <li><a href="?page={{ i }}">{{ i }}</a></li>
+        {% endif %}
+        {% endfor %}
+        {% if page_obj.has_next %}
+        <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+        {% else %}
+        <li class="disabled"><span>&raquo;</span></li>
+        {% endif %}
+        </ul>
+        {% endif %}
+    </div>
+</body>
+</html>

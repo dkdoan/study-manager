@@ -1,0 +1,74 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'pomodoro/pomodoro_timer.css' %}">
+    <title>Skolr - Timer</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@300&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <header>
+        <ol id="nav-bar">
+            <li class="page">
+                <div id="account-dropdown">
+                    <button id="drop-btn" class="page-link">account</button>
+                    <div id="dropdown-links">
+                        {% if user.is_authenticated %}
+                            <a class="page-link" href="{% url 'profile' %}">profile</a>
+                            <a class="page-link" href="{% url 'logout' %}">sign out</a>
+
+                        {% else %}
+                            <a class="page-link" href="{% url 'login' %}">sign in</a>
+                            <a class="page-link" href="{% url 'register' %}">register</a>
+                        {% endif %}
+                    </div>
+
+                </div>
+            
+            <li class="page"><a class="page-link" href="{% url 'pomodoro-sessions' %}">sessions</a></li>
+            <li class="page"><a class="page-link" href="{% url 'pomodoro-timer' %}">timer</a></li>
+            
+        </ol>
+    
+
+    </header>
+
+    <h1 id="main-title">pomodoro timer</h1>
+
+    <div id="function-timer-container">
+        <div id="timer">
+            <span id="minutes">25</span><span>:</span><span id="seconds">00</span>
+        </div>
+        <div id="pet-container">
+            
+        </div>
+        <div class=play-container>
+            <button class="play-reset" id="start">play</button>
+            <button class="play-reset" id="reset">reset</button>
+
+        </div>
+    </div>
+        
+    <div id="controls">
+        <button class="timer-controls" id="study">study</button>
+        <button class="timer-controls" id="break">break</button>
+        <button class="timer-controls" id="log">log</button>
+    </div>
+
+    <div id="yt-lofi-container">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/5qap5aO4i9A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <script> var url = "{% static 'pomodoro/mixkit-bell-notification-933.wav' %}";</script>
+    <script> var csrfToken = "{{ csrf_token }}";</script>
+    <script src="{% static 'pomodoro/pomodoro_timer.js' %}"></script>
+
+
+</body>
+</html>

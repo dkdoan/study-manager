@@ -1,0 +1,175 @@
+#nav-bar
+{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgb(128, 144, 217);
+    
+}
+.page
+{
+    float: right;
+}
+.page-link
+{
+    display:block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    background-color: rgb(128, 144, 217);
+    font-size: 2em;
+    font-family: 'Azaret Mono', Helvetica, sans-serif;
+    text-decoration: none;
+}
+
+.page-link:hover
+{
+    background-color: white;
+    color: rgb(128, 144, 217);
+}
+
+body
+{
+    text-align: center;
+    font-family: 'Azaret Mono', Helvetica, sans-serif;
+    background-color: rgb(36, 34, 31);
+}
+
+
+
+
+
+#greeting
+{
+    animation-name: fadeInGreetings;
+    animation-duration: 0.7s;
+    animation-delay: 0s;
+    animation-fill-mode: forwards;
+    padding-left: 180px;
+    font-size: 4em;
+    color:white;
+    text-align: left;
+   
+}
+
+#greetings2
+{
+    color:rgb(36, 34, 31);
+    animation-name: fadeInGreetings;
+    animation-duration: 1.2s;
+    animation-delay: 0.6s;
+    animation-fill-mode: forwards;
+    padding-left: 180px;
+    text-align: left;
+    font-size: 3em;
+    
+    
+}
+
+
+#session-container
+{
+    text-align: center;
+    
+}
+#sessions-table
+{
+    background-color: rgba(114, 66, 245,1);
+    font-size: 2em;
+    padding: 30px 120px;
+    
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid white;
+    border-collapse: collapse;
+    
+}
+
+td, th
+{
+    padding: 20px 40px;
+    text-align: left;
+    border: 1px solid white;
+    border-collapse: collapse;
+}
+
+th
+{
+    text-align: center;
+}
+
+td
+{
+    background-color: rgba(128, 144, 217,0.7);
+}
+
+
+#dropdown-links {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+
+
+#account-dropdown:hover #dropdown-links {
+    display: block;
+  }
+
+#account-dropdown {
+    float: left;
+    overflow: hidden;
+  }
+
+
+#account-dropdown #drop-btn {
+    
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: 'Azaret Mono', Helvetica, sans-serif; /* Important for vertical align on mobile phones */
+    margin: 0; /* Important for vertical align on mobile phones */
+  }
+  
+@keyframes fadeInGreetings
+{
+    from {color:  rgb(36, 34, 31)}
+    to {color: white}
+}
+
+.pagination
+{
+    list-style-type: none;
+    margin: 20px;
+    padding: 20px;
+    overflow: hidden;
+    background-color:   rgba(114, 66, 245,1);
+    color: white;
+    display: inline;
+
+    
+}
+.pagination a
+{
+    color: white;
+    text-decoration: none;    
+}
+.pagination li
+{
+    padding: 5px;
+    margin: 5px;
+    display: inline;
+    font-size: 2em;
+}
+
+.active
+{
+    
+    text-decoration: underline;
+}
