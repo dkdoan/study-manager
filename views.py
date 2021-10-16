@@ -1,55 +1,40 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
+from .forms import UserRegisterForm, UserUpdateForm
 from django.contrib.auth.decorators import login_required
-from django.views.decorators.csrf import csrf_exempt
-from .models import Sessions
-import json
-from django.views.generic import ListView
-from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
+ 
+def register(request):
 
-
-#list of dictionaries containing different users info can be passed in
-#posts = [{'author':' 'Danny', 'age': 15}, {'author':'John', 'age': 15}]
-
-
-
-def home(request):
-
-    if request.method == 'POST':        
-        sessionDict = json.loads(request.body)
-        newSession = Sessions()
-        newSession.subject = sessionDict['subject']
-        newSession.timeSpent = sessionDict['timeSpent']
-        newSession.author = request.user    
-        newSession.save()
-
-
-        
+    if request.method == "POST": #if we get a post request
+        form = UserRegisterForm(request.POST) #instantiate a form with data
+        if form.is_valid():
+            form.save() #will add the user to the database
+            username = form.cleaned_data.get('username')
+            message = messages.success(request, f"welcome {username}! you've sucessfully made an account. you can now sign-in")
+            return redirect('login')
     else:
-        pass
-    return render(request, 'pomodoro/pomodoro_timer.html')
+        form = UserRegisterForm #instantiate an empty form
+    
+    return render(request, 'users/register.html', {'form': form  })
 
-def about(request):
-    return render(request, 'pomodoro/pomodoro_about.html')
 
-  
 
 @login_required
-def sessions(request):
-
-    context = {'Sessions': Sessions.objects.filter(author=request.user).all()}
-    paginate_by = 5    
-    
-    return render(request, 'pomodoro/sessions.html', context)
+def profile(request):
 
 
-class SessionListView(LoginRequiredMixin, ListView):
-    model = Sessions
-    template_name = 'pomodoro/sessions.html'
-    context_object_name = "Sessions"
-    paginate_by = 50
-    ordering = ['-date_created']
+    if request.method == 'POST':
+        updateForm = UserUpdateForm(request.POST, instance=request.user)
+        context = {"updateForm": updateForm}
 
-    def get_queryset(self):
-        return self.model.objects.filter(author=self.request.user).order_by('-date')
+        if updateForm.is_valid():
+            updateForm.save()
+            message = messages.success(request, f"your profile has now been updated!")
+            return redirect('profile')
+
+    else:
+        updateForm = UserUpdateForm(instance=request.user)
+    context = {"updateForm": updateForm}
+    return render(request, 'users/profile.html', context) 

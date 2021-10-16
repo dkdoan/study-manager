@@ -1,0 +1,157 @@
+#nav-bar
+{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgb(128, 144, 217);
+    
+}
+.page
+{
+    float: right;
+}
+.page-link
+{
+    display:block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    background-color: rgb(128, 144, 217);
+    font-size: 2em;
+    font-family: 'Azaret Mono', Helvetica, sans-serif;
+    text-decoration: none;
+}
+
+
+
+
+
+body
+{
+    color: white;
+    background-color: rgb(36, 34, 31);
+    
+    font-family: 'Azaret Mono', Helvetica, sans-serif;
+    
+}
+
+legend
+{
+    margin: 40px;
+    padding: 20px;
+    font-size: 2em;
+    background-color: rgb(114, 66, 245);
+}
+
+#register-btn
+{
+    margin: 20px 120px;
+    background-color: rgb(128, 144, 217);
+    color: white;
+    font-size: 30px;
+    padding: 18px;
+    font-family: 'Azaret Mono', Helvetica, sans-serif;
+    margin: none;
+    border-radius: 18px;
+    transition-duration: 0.5s;
+}
+
+
+#register-btn:hover
+{
+    background-color: white;
+    color: rgb(128, 144, 217);
+}
+
+.sign-in-link
+{
+    font-size: 2em;
+    margin: 20px
+}
+
+input
+{
+    padding: 5px;
+}
+
+form
+{
+    font-size: 1.1em;
+}
+
+
+#dropdown-links {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+
+#account-dropdown:hover #dropdown-links {
+    display: block;
+}
+
+#account-dropdown {
+    float: left;
+    overflow: hidden;
+}
+
+
+#account-dropdown #drop-btn {
+    
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: 'Azaret Mono', Helvetica, sans-serif; /* Important for vertical align on mobile phones */
+    margin: 0; /* Important for vertical align on mobile phones */
+}
+  
+  .page-link:hover
+{
+    background-color: white;
+    color: rgb(128, 144, 217);
+}
+
+#alert
+{
+    background-color:lightgreen;
+    color: green;
+    padding: 15px;
+    font-family: 'Azaret Mono', Helvetica, sans-serif;
+}
+
+#logout-notif
+{
+    margin: 40px;
+}
+#login-link
+{
+    margin: 60px;
+}
+
+.form-container, #updateForm
+{
+    margin: 60px;
+    font-size: 1.1em;
+}
+
+#profile-username
+{
+    font-size: 1.3em;
+    font-family: 'Azaret Mono', Helvetica, sans-serif; 
+    color: white;
+    margin-left: 40px;
+}
+
+#forgot-password-notif
+{
+    margin-left: 40px;
+    font-family: 'Azaret Mono', Helvetica, sans-serif; 
+    font-size: 1.2em;
+}

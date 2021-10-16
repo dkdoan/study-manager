@@ -1,0 +1,67 @@
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'users/register.css' %}">
+    <title>Skolr - Profile</title>
+</head>
+<body>
+    <header>
+        <ol id="nav-bar">
+            <li class="page">
+                <div id="account-dropdown">
+                    <button id="drop-btn" class="page-link">account</button>
+                    <div id="dropdown-links">
+                        {% if user.is_authenticated %}
+                            <a class="page-link" href="{% url 'profile' %}">profile</a>
+                            <a class="page-link" href="{% url 'logout' %}">sign out</a>
+                            
+
+
+                        {% else %}
+                            <a class="page-link" href="{% url 'login' %}">sign in</a>
+                            <a class="page-link" href="{% url 'register' %}">register</a>
+                        {% endif %}
+                    </div>
+                </div>
+            <li class="page"><a class="page-link" href="{% url 'pomodoro-sessions' %}">sessions</a></li>
+            <li class="page"><a class="page-link" href="{% url 'pomodoro-timer' %}">timer</a></li>
+        </ol>
+    </header>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div id="created-account-alert">
+                <p id="alert">{{ message }}</p>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <div id="profile-username">
+        <h1 id="username">{{ user.username }}</h1>
+        <p id="email"> {{ user.email }} </p>
+    </div>
+    <hr>
+
+    <div id="updateForm">  
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="form-fieldset">
+            
+                <legend>profile info</legend>
+                {{ updateForm|crispy }}
+            
+            </fieldset>
+        
+        <div id="btn-container">
+            <button id="register-btn" type="submit">update</button>
+        </div>
+        </form>
+    </div>
+</body>
+</html>
+{% endblock content %}
